@@ -1,0 +1,20 @@
+@use "./styles/imports/generic";
+@use "./styles/imports/settings" as *;
+@use "./styles/imports/tools" as *;
+
+body {
+  background-image: url("");
+  background-size: contain;
+  color: $white;
+}
+
+.bg-shadow {
+  background-color: #000000bd;
+  min-height: 100vh;
+}
+
+.default-size {
+  max-width: 1200px;
+  margin: auto;
+  padding: 1rem;
+}

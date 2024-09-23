@@ -1,0 +1,171 @@
+@use "../imports/settings" as *;
+@use "../imports/tools" as *;
+
+/* Here we define the custom properties */
+:root {
+  --type-primary: "Courier New", Courier, monospace;
+  --type-secondary: Arial, Helvetica, sans-serif;
+}
+
+html {
+  @include customScroll($main, $stroke, 0.1rem);
+  @include customSelection($secondary, $stroke);
+}
+
+/* We reset the margins and paddings of all labels. */
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  vertical-align: baseline;
+}
+
+/* We avoid problems with images. */
+img,
+picture,
+video,
+iframe,
+figure {
+  max-width: 100%;
+  width: 100%;
+  display: block;
+  /* optional */
+  -o-object-fit: cover;
+  object-fit: cover;
+  -o-object-position: center center;
+  object-position: center center;
+}
+
+/* We reset the links to work as boxes... */
+a {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  font-size: inherit;
+}
+
+/* ... except those found in paragraphs */
+p a {
+  display: inline;
+}
+
+/* We remove the dots from the <li> */
+li {
+  list-style-type: none;
+}
+
+/* We set soft anchors */
+html {
+  scroll-behavior: smooth;
+  font-size: 18px;
+}
+
+/* We deactivate default styles of the main text labels */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+a,
+strong,
+blockquote,
+i,
+b,
+u,
+em {
+  font-size: 1em;
+  font-weight: inherit;
+  font-style: inherit;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Avoiding problems with pseudo-elements in quotes */
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+
+/* We level typography and forms placement problems. */
+form,
+input,
+textarea,
+select,
+button,
+label {
+  font-family: inherit;
+  font-size: inherit;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
+  background-color: transparent;
+  color: inherit;
+  display: block;
+  /* optional */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+input:focus,
+textarea:focus {
+  outline: none;
+}
+
+/* Reset the tables. */
+table,
+tr,
+td {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* Avoid SVG problems. */
+svg {
+  display: block;
+  fill: currentColor;
+}
+
+/* We configure the typography for the entire website. */
+body {
+  min-height: 100vh;
+  font-size: 100%;
+  font-family: var(--type-primary);
+  color: $dark;
+  background-color: $light;
+  line-height: 1.4em;
+  /* optional */
+  font-smooth: always;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Controls how text inside an element is wrapped. */
+
+h1,
+h2,
+h3,
+h4 {
+  text-wrap: balance;
+  line-height: 1.6;
+}
+p {
+  text-wrap: pretty;
+  line-height: 1.4;
+}
+
+/* We adapt them to the dark mode.  */
+
+@media (prefers-color-scheme: dark) {
+  body {
+    color: $light;
+    background-color: $dark;
+  }
+}

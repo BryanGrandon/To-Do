@@ -1,0 +1,18 @@
+@mixin customScroll($color, $bg, $margin) {
+  ::-webkit-scrollbar {
+    width: 0.2rem;
+    height: 0.3rem;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: $color;
+    border-radius: 100vw;
+  }
+  ::-webkit-scrollbar-track {
+    margin-block: $margin;
+    margin-inline: $margin;
+    background: $bg;
+  }
+  ::-webkit-scrollbar-corner {
+    display: none;
+  }
+}
