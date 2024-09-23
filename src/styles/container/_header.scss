@@ -1,0 +1,36 @@
+@use "../imports/settings" as *;
+@use "../imports/tools" as *;
+
+.header {
+  @include customFlex(column, nowrap, normal, normal);
+  gap: 1rem;
+
+  &__nav {
+    @include customFlex(row-reverse, nowrap, space-between, center);
+  }
+
+  &__btn-github {
+    @include customFlex(row, nowrap, normal, center);
+    gap: 0.3rem;
+    border-radius: 0.5rem;
+    padding: 0.2rem 0.5rem;
+    color: $white;
+    background-color: $main;
+    box-shadow: 1px 2px 3px $stroke;
+    transition: background 0.3s ease-in;
+
+    &:hover {
+      background-color: $secondary;
+      color: $dark;
+    }
+
+    &:active {
+      box-shadow: 1px 2px 3px $stroke inset;
+    }
+  }
+
+  &__title {
+    font-size: 2rem;
+    text-align: center;
+  }
+}
