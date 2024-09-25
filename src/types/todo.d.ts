@@ -7,7 +7,7 @@ interface ITodo {
 
 type TodoContextType = {
   todos: ITodo[];
-  saveTodo: (todo: ITodo) => void;
+  saveTodo: (task, category) => void;
   updateTodo: (id: number) => void;
 };
 
