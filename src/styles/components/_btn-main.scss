@@ -1,0 +1,19 @@
+@use "../imports/settings" as *;
+@use "../imports/tools" as *;
+
+.btn-main {
+  cursor: pointer;
+  padding: 0.2rem 1rem;
+  border-radius: 0.5rem;
+  background-color: $main;
+  box-shadow: 2px 2px 3px $stroke;
+  transition: background 0.3s ease;
+
+  &:hover {
+    background-color: $secondary;
+    color: $dark;
+  }
+  &:active {
+    box-shadow: 2px 2px 3px $stroke inset;
+  }
+}
