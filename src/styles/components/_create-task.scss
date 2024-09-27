@@ -3,6 +3,7 @@
 
 .form-create-task {
   @include customFlex(row, wrap, space-between, center);
+  gap: 1rem;
   padding: 1rem 2rem;
   /* From https://css.glass */
   background: rgba(255, 255, 255, 0.07);
@@ -13,14 +14,13 @@
   border: 1px solid rgba(255, 255, 255, 0.5);
 
   &__label {
-    @include customFlex(row, wrap, space-between, center);
+    @include customFlex(row, nowrap, space-between, center);
     gap: 0.5rem;
   }
 
   &__input {
     border-bottom: 1px solid rgba(255, 255, 255, 0.5);
     padding: 0.2rem 0.5rem;
-    width: 18rem;
   }
 
   &__btn {
@@ -37,6 +37,17 @@
     }
     &:active {
       box-shadow: 2px 2px 3px $stroke inset;
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .form-create-task {
+    @include customFlex(column, nowrap, space-between, normal);
+    gap: 1.5rem;
+
+    &__input {
+      width: 100%;
     }
   }
 }
