@@ -1,0 +1,64 @@
+@use "../imports/settings" as *;
+@use "../imports/tools" as *;
+
+.task {
+  @include customFlex(row, wrap, space-between, center);
+  gap: 1rem;
+  border: 1px solid #ffffff90;
+  background-color: #0000003a;
+  border-radius: 0.6rem;
+  padding: 0.5rem;
+  box-shadow: 2px 2px 5px $stroke;
+
+  &__section {
+    @include customFlex(row, nowrap, end, center);
+    gap: 0.5rem;
+
+    &-icons {
+      font-size: 1.3rem;
+    }
+  }
+  &__df-row {
+    @include customFlex(row, wrap, normal, center);
+    gap: 1rem;
+  }
+}
+
+.form-edit {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 1rem;
+
+  &__input {
+    padding: 0.3rem;
+    border-bottom: 2px dashed $secondary;
+  }
+  &__task {
+    resize: none;
+    height: auto;
+  }
+  &__category {
+    width: 10rem;
+  }
+}
+
+.completed {
+  &__form {
+    border-color: $dark;
+  }
+  &__task {
+    color: $secondary;
+    text-decoration: line-through;
+  }
+  &__category {
+    color: gray;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .form-edit {
+    grid-template-columns: auto;
+  }
+}

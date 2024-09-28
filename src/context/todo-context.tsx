@@ -15,21 +15,38 @@ type ProviderProps = {
 
 export const TodoContextProvider = ({ children }: ProviderProps) => {
   const [todos, setTodos] = React.useState<ITodo[]>([
-    { id: 1, task: "Task 1", status: false, category: ["work"] },
+    { id: 1, task: "Task 1", status: false, category: "work" },
   ]);
 
   const saveTodo = (task: string, category: string): void => {
     const newTodo: ITodo = {
-      id: Math.floor(Math.random() * 100),
+      id: Math.floor(Math.random() * 1000),
       task,
-      category: [category],
+      category,
       status: false,
     };
     setTodos([...todos, newTodo]);
   };
   console.log(todos);
 
-  const updateTodo = () => {};
+  const updateTodo = (
+    id: number,
+    type: string,
+    task: string,
+    category: string
+  ) => {
+    if (type == "edit") {
+      todos.map((e) => {
+        if (e.id == id) {
+          e.task = task;
+          e.category = category;
+          setTodos([...todos]);
+        }
+      });
+    }
+
+    // delete task
+  };
 
   return (
     <TodoContext.Provider value={{ todos, saveTodo, updateTodo }}>
