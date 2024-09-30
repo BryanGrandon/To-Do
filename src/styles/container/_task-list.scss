@@ -1,0 +1,7 @@
+@use "../imports/settings" as *;
+@use "../imports/tools" as *;
+
+.task-list {
+  @include customFlex(column, nowrap, normal, normal);
+  gap: 0.5rem;
+}

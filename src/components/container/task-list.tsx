@@ -5,7 +5,7 @@ import Task from "./task";
 const TaskList = () => {
   const { todos } = useTodoContext();
   return (
-    <article>
+    <article className="task-list">
       {todos.map((e) => (
         <Task key={e.id} id={e.id} task={e.task} category={e.category} />
       ))}
