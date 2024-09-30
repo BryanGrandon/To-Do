@@ -2,6 +2,7 @@ import React from "react";
 import { useTodoContext } from "../../context/todo-context";
 import ButtonMain from "../buttonMain";
 import { MdCheckBoxOutlineBlank, MdCheckBox } from "react-icons/md";
+import { IoClose } from "react-icons/io5";
 
 type Props = {
   id: number;
@@ -17,9 +18,12 @@ const Task = (props: Props) => {
   let [task, setTask] = React.useState<string>(props.task);
   let [category, setCategory] = React.useState<string>(props.category);
 
-  const handlerSubmitEdit = () => {
+  const handlerSubmitEdit = (): void => {
     updateTodo(props.id, "edit", task, category);
     setIsEdit(false);
+  };
+  const handlerCLickClose = () => {
+    updateTodo(props.id, "delete", task, category);
   };
 
   return (
@@ -33,19 +37,20 @@ const Task = (props: Props) => {
           }}
         >
           <textarea
-            className="form-edit__input form-edit__task"
+            className="form-edit__input"
             placeholder="Task..."
             value={task}
             onChange={(e) => setTask(e.target.value)}
+            rows={1}
           ></textarea>
           <section className="task__df-row">
-            <input
+            <textarea
               className="form-edit__input form-edit__category"
-              type="text"
               placeholder="Category..."
               value={category}
               onChange={(e) => setCategory(e.target.value)}
-            />
+              rows={1}
+            ></textarea>
             <ButtonMain title="Update" />
           </section>
         </form>
@@ -67,6 +72,9 @@ const Task = (props: Props) => {
               {props.category}
             </p>
             <ButtonMain title="Edit" onClick={() => setIsEdit(true)} />
+            <button className="task__btn-close" onClick={handlerCLickClose}>
+              <IoClose />
+            </button>
           </section>
         </>
       )}

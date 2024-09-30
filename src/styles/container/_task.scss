@@ -2,7 +2,7 @@
 @use "../imports/tools" as *;
 
 .task {
-  @include customFlex(row, wrap, space-between, center);
+  @include customFlex(row, nowrap, space-between, center);
   gap: 1rem;
   border: 1px solid #ffffff90;
   background-color: #0000003a;
@@ -19,8 +19,14 @@
     }
   }
   &__df-row {
-    @include customFlex(row, wrap, normal, center);
+    @include customFlex(row, nowrap, normal, center);
     gap: 1rem;
+  }
+  &__btn-close {
+    color: #f00;
+    font-size: 1.5rem;
+    cursor: pointer;
+    filter: drop-shadow(1px 1px 2px #f00);
   }
 }
 
@@ -34,10 +40,7 @@
   &__input {
     padding: 0.3rem;
     border-bottom: 2px dashed $secondary;
-  }
-  &__task {
     resize: none;
-    height: auto;
   }
   &__category {
     width: 10rem;
@@ -60,5 +63,15 @@
 @media screen and (max-width: 600px) {
   .form-edit {
     grid-template-columns: auto;
+  }
+  .task {
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    &__df-row {
+      justify-content: space-evenly;
+      gap: 1rem;
+      width: 100%;
+      // border: 1px solid #f00;
+    }
   }
 }

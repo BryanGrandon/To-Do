@@ -5,15 +5,17 @@ interface ITodo {
   category: string;
 }
 
+type UpdateTodo = (
+  id: number,
+  type: string,
+  task: string,
+  category: string
+) => void;
+
 type TodoContextType = {
   todos: ITodo[];
   saveTodo: (task, category) => void;
-  updateTodo: (
-    id: number,
-    type: string,
-    task: string,
-    category: string
-  ) => void;
+  updateTodo: UpdateTodo;
 };
 
-export { ITodo, TodoContextType };
+export { ITodo, TodoContextType, UpdateTodo };
