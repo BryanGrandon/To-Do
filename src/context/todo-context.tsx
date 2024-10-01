@@ -1,5 +1,5 @@
 import React from "react";
-import { ITodo, TodoContextType, UpdateTodo, ISearch } from "../types/todo";
+import { ITodo, TodoContextType, ISearch, IUpdate } from "../types/todo";
 
 const TodoContext = React.createContext<TodoContextType | null>(null);
 
@@ -36,9 +36,11 @@ export const TodoContextProvider = ({ children }: ProviderProps) => {
     setTodos([...todos, newTodo]);
   };
 
+  // Update To-Do
+
   type EditTask = (id: number, task: string, category: string) => void;
 
-  const editTask: EditTask = (id, task, category) => {
+  const editTask: EditTask = (id, task, category): void => {
     todos.map((e) => {
       if (e.id == id) {
         e.task = task;
@@ -50,35 +52,57 @@ export const TodoContextProvider = ({ children }: ProviderProps) => {
     });
   };
 
-  const deleteTask = (id: number) => {
+  const deleteTask = (id: number): void => {
     let result = todos.filter((e) => e.id != id);
     for (let i = 0; i < result.length; i++) result[i].id = i + 1;
     setTodos([...result]);
-    setSaved([...todos]);
+    setSaved([...result]);
   };
 
-  const updateTodo: UpdateTodo = (id, type, task, category) => {
+  const [textComplete, setTextComplete] = React.useState<string>("both");
+
+  const checkedTask = (id: number, status: boolean): void => {
+    saved.filter((e) => {
+      if (e.id == id) e.status = status;
+    });
+    search({ type: "complete", completed: textComplete });
+  };
+
+  const updateTodo = ({ id, type, task, category, status }: IUpdate): void => {
     if (type == "edit") editTask(id, task, category);
     else if (type == "delete") deleteTask(id);
+    else if (type == "checked") checkedTask(id, status);
+  };
+
+  // Search
+
+  const searchText = (search: string): void => {
+    if (search) {
+      let result = saved.filter((e) => e.task.includes(search.toLowerCase()));
+      setTodos([...result]);
+    } else setTodos(saved);
+  };
+
+  const searchCategory = (category: string): void => {
+    if (category != "all") {
+      let result = saved.filter((e) => e.category == category);
+      setTodos([...result]);
+    } else setTodos(saved);
+  };
+
+  const searchChecked = (completed: string): void => {
+    setTextComplete(String(completed));
+    if (completed != "both") {
+      let isComplete: boolean = completed == "complete" ? true : false;
+      let result = saved.filter((e) => e.status == isComplete);
+      setTodos([...result]);
+    } else setTodos(saved);
   };
 
   const search = ({ type, search, category, completed }: ISearch): void => {
-    if (type == "search") {
-      if (search) {
-        let result = todos.filter((e) =>
-          e.task.toLowerCase().includes(search.toLowerCase())
-        );
-        setTodos([...result]);
-      } else setTodos(saved);
-    } else if (type == "category") {
-      if (category != "all") {
-        let result = saved.filter((e) => e.category == category);
-        setTodos([...result]);
-      } else setTodos(saved);
-    } else if (type == "complete") {
-      let result = saved.filter((e) => e.status == completed);
-      setTodos([...result]);
-    }
+    if (type == "search") searchText(String(search));
+    else if (type == "category") searchCategory(String(category));
+    else if (type == "complete") searchChecked(String(completed));
   };
 
   return (

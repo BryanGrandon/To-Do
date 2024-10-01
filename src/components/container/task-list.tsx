@@ -7,7 +7,13 @@ const TaskList = () => {
   return (
     <article className="task-list">
       {todos.map((e) => (
-        <Task key={e.id} id={e.id} task={e.task} category={e.category} />
+        <Task
+          key={e.id}
+          id={e.id}
+          task={e.task}
+          category={e.category}
+          status={e.status}
+        />
       ))}
     </article>
   );

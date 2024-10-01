@@ -5,6 +5,7 @@ import Dropdown from "../dropdown";
 const Filter = () => {
   const { search, categoryData } = useTodoContext();
   const [categoryActive, setCategoryActive] = React.useState<string>("all");
+  const [statusActive, setStatusActive] = React.useState<string>("both");
 
   type CategoriesT = {
     text: string;
@@ -18,6 +19,21 @@ const Filter = () => {
     },
   ];
 
+  const status: CategoriesT[] = [
+    {
+      text: "both",
+      id: 0,
+    },
+    {
+      text: "complete",
+      id: 1,
+    },
+    {
+      text: "incomplete",
+      id: 2,
+    },
+  ];
+
   for (let i = 0; i < categoryData.length; i++) {
     const newCategory: CategoriesT = {
       text: categoryData[i],
@@ -27,9 +43,15 @@ const Filter = () => {
   }
 
   const handlerClickCategories = (text: string) => {
-    console.log(text);
     setCategoryActive(text);
+    setStatusActive("both");
     search({ type: "category", category: text });
+  };
+
+  const handlerClickStatus = (text: string) => {
+    setStatusActive(text);
+    setCategoryActive("all");
+    search({ type: "complete", completed: text });
   };
 
   return (
@@ -40,6 +62,7 @@ const Filter = () => {
         placeholder="Search Task..."
         onChange={(e) => search({ type: "search", search: e.target.value })}
       />
+
       <Dropdown
         title="category"
         active={categoryActive}
@@ -53,14 +76,15 @@ const Filter = () => {
           </p>
         ))}
       />
+
       <Dropdown
         title="Status"
-        active={categoryActive}
-        children={categories.map((e) => (
+        active={statusActive}
+        children={status.map((e) => (
           <p
             className="dropdown__element-list-e"
             key={e.id}
-            onClick={() => handlerClickCategories(e.text)}
+            onClick={() => handlerClickStatus(e.text)}
           >
             {e.text}
           </p>

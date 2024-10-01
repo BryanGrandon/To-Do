@@ -8,22 +8,45 @@ type Props = {
   id: number;
   task: string;
   category: string;
+  status: boolean;
 };
 
 const Task = (props: Props) => {
   let { updateTodo } = useTodoContext();
   let [isEdit, setIsEdit] = React.useState<boolean>(false);
-  let [isChecked, setIsChecked] = React.useState<boolean>(false);
+  let [isChecked, setIsChecked] = React.useState<boolean>(props.status);
 
   let [task, setTask] = React.useState<string>(props.task);
   let [category, setCategory] = React.useState<string>(props.category);
 
   const handlerSubmitEdit = (): void => {
-    updateTodo(props.id, "edit", task, category);
+    updateTodo({
+      id: props.id,
+      type: "edit",
+      task,
+      category,
+      status: isChecked,
+    });
     setIsEdit(false);
   };
-  const handlerCLickClose = () => {
-    updateTodo(props.id, "delete", task, category);
+  const handlerCLickClose = (): void => {
+    updateTodo({
+      id: props.id,
+      type: "delete",
+      task,
+      category,
+      status: isChecked,
+    });
+  };
+  const handlerClickCheck = (): void => {
+    updateTodo({
+      id: props.id,
+      type: "checked",
+      task,
+      category,
+      status: !isChecked,
+    });
+    setIsChecked(!isChecked);
   };
 
   return (
@@ -60,7 +83,7 @@ const Task = (props: Props) => {
             className={`task__section ${isChecked ? "completed__task" : ""}`}
           >
             <section
-              onClick={() => setIsChecked(!isChecked)}
+              onClick={handlerClickCheck}
               className="task__section-icons"
             >
               {isChecked ? <MdCheckBox /> : <MdCheckBoxOutlineBlank />}

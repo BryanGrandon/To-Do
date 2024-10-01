@@ -27,7 +27,12 @@ const Dropdown = ({ title, children, active }: Props): JSX.Element => {
       </section>
       <section className="dropdown__element">
         {isActive ? (
-          <section className="dropdown__element-list">{children}</section>
+          <section
+            className="dropdown__element-list"
+            onClick={() => setIsActive(!isActive)}
+          >
+            {children}
+          </section>
         ) : null}
       </section>
     </article>

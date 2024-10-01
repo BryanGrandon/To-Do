@@ -5,18 +5,17 @@ interface ITodo {
   category: string;
 }
 
-type UpdateTodo = (
-  id: number,
-  type: string,
-  task: string,
-  category: string
-) => void;
+interface IUpdate extends ITodo {
+  type: string;
+}
+
+type UpdateTodo = (data: IUpdate) => void;
 
 interface ISearch {
   type: string;
   search?: string;
   category?: string;
-  completed?: boolean;
+  completed?: string;
 }
 
 type Search = (data: ISearch) => void;
@@ -29,4 +28,4 @@ type TodoContextType = {
   search: Search;
 };
 
-export { ITodo, TodoContextType, UpdateTodo, ISearch };
+export { ITodo, TodoContextType, ISearch, IUpdate };
