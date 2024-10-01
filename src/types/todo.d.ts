@@ -12,10 +12,21 @@ type UpdateTodo = (
   category: string
 ) => void;
 
+interface ISearch {
+  type: string;
+  search?: string;
+  category?: string;
+  completed?: boolean;
+}
+
+type Search = (data: ISearch) => void;
+
 type TodoContextType = {
   todos: ITodo[];
-  saveTodo: (task, category) => void;
+  categoryData: string[];
+  saveTodo: (task: string, category: string) => void;
   updateTodo: UpdateTodo;
+  search: Search;
 };
 
-export { ITodo, TodoContextType, UpdateTodo };
+export { ITodo, TodoContextType, UpdateTodo, ISearch };

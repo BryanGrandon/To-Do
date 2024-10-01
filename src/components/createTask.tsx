@@ -17,7 +17,7 @@ const CreateTask = () => {
 
   const handlerClick = (): void => {
     if (!listCategory.includes(typeof category == "string" ? category : "")) {
-      createOptionDatalist(String(category?.trim()));
+      createOptionDatalist(String(category?.trim().toLowerCase()));
     }
     saveTodo(task, category);
     setTask("");

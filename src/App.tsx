@@ -1,7 +1,7 @@
+import Filter from "./components/container/filter";
 import Header from "./components/container/header";
 import TaskList from "./components/container/task-list";
 import CreateTask from "./components/createTask";
-
 const App = (): JSX.Element => {
   return (
     <>
@@ -10,9 +10,7 @@ const App = (): JSX.Element => {
         <main className="default-size ">
           <CreateTask />
 
-          <section>
-            <h2>Filter</h2>
-          </section>
+          <Filter />
 
           <TaskList />
         </main>

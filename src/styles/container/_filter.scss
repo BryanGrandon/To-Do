@@ -1,0 +1,32 @@
+@use "../imports/settings" as *;
+@use "../imports/tools" as *;
+
+.filter {
+  @include customFlex(row, nowrap, normal, normal);
+  gap: 1rem;
+  background-color: #00000050;
+  border-radius: 0.5rem;
+  padding: 0.6rem 1rem;
+  border: 1px solid $secondary;
+
+  &__input {
+    border: 1px solid #ffffff90;
+    border-radius: 0.3rem;
+    padding: 0.2rem 1rem;
+  }
+  &__category {
+    @include customFlex(column, nowrap, normal, normal);
+    border: 1px solid #ffffff90;
+    border-radius: 0.3rem;
+  }
+}
+
+.dropdown__element-list-e {
+  cursor: pointer;
+  padding: 0.2rem 0;
+  text-transform: capitalize;
+
+  &:hover {
+    color: $secondary;
+  }
+}
