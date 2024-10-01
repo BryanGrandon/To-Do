@@ -1,0 +1,38 @@
+@use "../imports/settings" as *;
+@use "../imports/tools" as *;
+
+.dropdown {
+  @include customFlex(column, nowrap, normal, normal);
+  border: 1px solid #ffffff90;
+  border-radius: 0.3rem;
+
+  &__category {
+    @include customFlex(row, nowrap, normal, center);
+    gap: 2rem;
+    padding: 0.3rem 1rem;
+
+    &-select {
+      color: $secondary;
+      text-transform: capitalize;
+    }
+
+    &-icon {
+      font-size: 1.2rem;
+    }
+  }
+  &__element {
+    position: relative;
+
+    &-list {
+      @include customFlex(column, nowrap, normal, normal);
+      position: absolute;
+      top: 0;
+      width: 100%;
+      border: 1px solid #ffffff90;
+
+      border-radius: 0.3rem;
+      background-color: #000000cc;
+      padding: 0.3rem 1rem;
+    }
+  }
+}
