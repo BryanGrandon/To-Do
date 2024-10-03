@@ -20,3 +20,8 @@ body {
   margin: auto;
   padding: 1rem;
 }
+
+.main {
+  @include customFlex(column, nowrap, normal, normal);
+  gap: 1.5rem;
+}

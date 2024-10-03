@@ -2,11 +2,12 @@
 @use "../imports/tools" as *;
 
 .filter {
-  @include customFlex(row, nowrap, normal, normal);
+  @include customFlex(row, wrap, space-between, center);
   gap: 1rem;
   background-color: #00000050;
   border-radius: 0.5rem;
-  padding: 0.6rem 1rem;
+  padding: 1rem 2rem;
+
   border: 1px solid $secondary;
 
   &__input {
@@ -28,5 +29,11 @@
 
   &:hover {
     color: $secondary;
+  }
+}
+
+@media screen and (max-width: 845px) {
+  .filter {
+    @include customFlex(column, nowrap, center, normal);
   }
 }

@@ -7,7 +7,7 @@
   padding: 1rem 2rem;
   /* From https://css.glass */
   background: rgba(255, 255, 255, 0.07);
-  border-radius: 16px;
+  border-radius: 0.5rem;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
@@ -22,26 +22,17 @@
     border-bottom: 1px solid rgba(255, 255, 255, 0.5);
     padding: 0.2rem 0.5rem;
   }
-
-  &__btn {
-    cursor: pointer;
-    padding: 0.2rem 1rem;
-    border-radius: 0.5rem;
-    background-color: $main;
-    box-shadow: 2px 2px 3px $stroke;
-    transition: background 0.3s ease;
-
-    &:hover {
-      background-color: $secondary;
-      color: $dark;
-    }
-    &:active {
-      box-shadow: 2px 2px 3px $stroke inset;
-    }
+}
+.input {
+  &-text {
+    width: 20rem;
+  }
+  &-category {
+    width: 10rem;
   }
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 980px) {
   .form-create-task {
     @include customFlex(column, nowrap, space-between, normal);
     gap: 1.5rem;

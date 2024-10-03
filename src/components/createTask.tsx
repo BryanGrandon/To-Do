@@ -1,5 +1,6 @@
 import React from "react";
 import { useTodoContext } from "../context/todo-context";
+import ButtonMain from "./buttonMain";
 
 const CreateTask = () => {
   let { saveTodo } = useTodoContext();
@@ -37,7 +38,7 @@ const CreateTask = () => {
         <label className="form-create-task__label">
           Task:
           <input
-            className="form-create-task__input"
+            className="form-create-task__input input-text"
             type="text"
             required
             value={task}
@@ -48,7 +49,7 @@ const CreateTask = () => {
         <label className="form-create-task__label">
           Category:
           <input
-            className="form-create-task__input"
+            className="form-create-task__input input-category"
             type="text"
             list="datalist-task"
             required
@@ -57,7 +58,7 @@ const CreateTask = () => {
           />
         </label>
 
-        <button className="form-create-task__btn">Add task</button>
+        <ButtonMain title="Add task" />
       </form>
       <datalist id="datalist-task"></datalist>
     </article>
