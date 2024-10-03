@@ -9,7 +9,7 @@ function Header(): JSX.Element {
           Github
         </a>
       </nav>
-      <h1 className="header__title">To-Do</h1>
+      <h1 className="header__title">To Do List</h1>
     </header>
   );
 }
