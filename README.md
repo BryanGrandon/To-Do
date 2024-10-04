@@ -24,10 +24,10 @@ The To-Do allows us to show all the tasks or activities that we want to perform.
 
 ## 📊 Project status
 
-| Status         | Start date | End date |
-| -------------- | ---------- | -------- |
-| ⌛ In progress | 2024-09-23 |          |
+| Status         | Start date | End date   |
+| -------------- | ---------- | ---------- |
+| ⌛ In progress | 2024-09-23 | 2024-10-04 |
 
-<!-- ## 🌐 [Website]()
+## 🌐 [Website](https://bryangrandon.github.io/To-Do/)
 
-<img src="" alt="website" width="900px" /> -->
+<img src="./src/assets/website.png" alt="website" width="900px" />
