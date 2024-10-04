@@ -1,0 +1,22 @@
+@use "../imports/settings" as *;
+@use "../imports/tools" as *;
+
+.footer {
+  @include customFlex(column, nowrap, center, center);
+  gap: 1rem;
+  min-height: 10rem;
+
+  &__text {
+    text-align: center;
+    color: #a3a3a3;
+  }
+  &__social {
+    @include customFlex(row, nowrap, normal, center);
+    gap: 1.5rem;
+
+    &-icon {
+      font-size: 1.2rem;
+      color: $secondary;
+    }
+  }
+}
