@@ -23,5 +23,5 @@ body {
 
 .main {
   @include customFlex(column, nowrap, normal, normal);
-  gap: 1.5rem;
+  gap: 3rem;
 }

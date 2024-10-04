@@ -5,6 +5,8 @@
   @include customFlex(column, nowrap, normal, normal);
   gap: 1rem;
 
+  min-height: 10rem;
+
   &__nav {
     @include customFlex(row-reverse, nowrap, space-between, center);
   }

@@ -4,4 +4,5 @@
 .task-list {
   @include customFlex(column, nowrap, normal, normal);
   gap: 0.5rem;
+  min-height: 10rem;
 }

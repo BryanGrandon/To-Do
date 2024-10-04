@@ -2,11 +2,12 @@ import Filter from "./components/container/filter";
 import Header from "./components/container/header";
 import TaskList from "./components/container/task-list";
 import CreateTask from "./components/createTask";
+import Footer from "./components/footer";
 import TitleH2 from "./components/title-h2";
 const App = (): JSX.Element => {
   return (
     <>
-      <article className="bg-shadow ">
+      <article className="bg-shadow">
         <Header />
         <main className="default-size main">
           <article>
@@ -22,6 +23,7 @@ const App = (): JSX.Element => {
             <TaskList />
           </article>
         </main>
+        <Footer />
       </article>
     </>
   );
