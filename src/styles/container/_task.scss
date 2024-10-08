@@ -66,12 +66,10 @@
   }
   .task {
     flex-wrap: wrap;
-    justify-content: space-evenly;
     &__df-row {
       justify-content: space-evenly;
       gap: 1rem;
       width: 100%;
-      // border: 1px solid #f00;
     }
   }
 }

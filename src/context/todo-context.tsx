@@ -46,6 +46,8 @@ export const TodoContextProvider = ({ children }: ProviderProps) => {
         e.task = task;
         e.category = category.toLowerCase();
         updateCategory(category.toLowerCase());
+        setTodos([...todos]);
+        setSaved([...todos]);
       }
     });
   };

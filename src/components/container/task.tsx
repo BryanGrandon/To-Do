@@ -59,21 +59,19 @@ const Task = (props: Props) => {
             handlerSubmitEdit();
           }}
         >
-          <textarea
+          <input
             className="form-edit__input"
             placeholder="Task..."
             value={task}
             onChange={(e) => setTask(e.target.value)}
-            rows={1}
-          ></textarea>
+          />
           <section className="task__df-row">
-            <textarea
+            <input
               className="form-edit__input form-edit__category"
               placeholder="Category..."
               value={category}
               onChange={(e) => setCategory(e.target.value)}
-              rows={1}
-            ></textarea>
+            />
             <ButtonMain title="Update" />
           </section>
         </form>
