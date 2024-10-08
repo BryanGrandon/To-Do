@@ -42,3 +42,8 @@
     }
   }
 }
+@media screen and (max-width: 450px) {
+  .form-create-task__label {
+    @include customFlex(column, nowrap, space-between, normal);
+  }
+}
