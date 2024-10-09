@@ -14,14 +14,31 @@ type ProviderProps = {
 };
 
 export const TodoContextProvider = ({ children }: ProviderProps) => {
-  const [todos, setTodos] = React.useState<ITodo[]>([]);
-  const [saved, setSaved] = React.useState<ITodo[]>([]);
-  const [categoryData, setCategoryData] = React.useState<string[]>([]);
+  const getLocalStorage = (string: string) => {
+    return JSON.parse(String(localStorage.getItem(string)));
+  };
 
-  const updateCategory = (data: string) => {
-    if (!categoryData.includes(data)) {
-      setCategoryData([...categoryData, data]);
-    }
+  let list = getLocalStorage("info");
+  let inTheCategory = getLocalStorage("category");
+
+  const [todos, setTodos] = React.useState<ITodo[]>(
+    list.length > 0 ? list : []
+  );
+  const [saved, setSaved] = React.useState<ITodo[]>(
+    list.length > 0 ? list : []
+  );
+  const [categoryData, setCategoryData] = React.useState<string[]>(
+    inTheCategory.length > 0 ? inTheCategory : []
+  );
+
+  React.useEffect(() => {
+    updateCategory();
+  }, []);
+
+  const updateCategory = () => {
+    let mySet = new Set<string>();
+    todos.map((e) => mySet.add(e.category));
+    setCategoryData([...mySet]);
   };
 
   const saveTodo = (task: string, category: string): void => {
@@ -31,9 +48,10 @@ export const TodoContextProvider = ({ children }: ProviderProps) => {
       category: category.toLowerCase(),
       status: false,
     };
-    updateCategory(category.toLowerCase());
+    updateCategory();
     setSaved([...todos, newTodo]);
     setTodos([...todos, newTodo]);
+    localStorage.setItem("info", JSON.stringify([...todos, newTodo]));
   };
 
   // Update To-Do
@@ -45,9 +63,10 @@ export const TodoContextProvider = ({ children }: ProviderProps) => {
       if (e.id == id) {
         e.task = task;
         e.category = category.toLowerCase();
-        updateCategory(category.toLowerCase());
+        updateCategory();
         setTodos([...todos]);
         setSaved([...todos]);
+        localStorage.setItem("info", JSON.stringify([...todos]));
       }
     });
   };
@@ -57,6 +76,8 @@ export const TodoContextProvider = ({ children }: ProviderProps) => {
     for (let i = 0; i < result.length; i++) result[i].id = i + 1;
     setTodos([...result]);
     setSaved([...result]);
+    updateCategory();
+    localStorage.setItem("info", JSON.stringify([...result]));
   };
 
   const [textComplete, setTextComplete] = React.useState<string>("both");
