@@ -19,17 +19,14 @@ export const TodoContextProvider = ({ children }: ProviderProps) => {
   };
 
   let list = getLocalStorage("info");
-  let inTheCategory = getLocalStorage("category");
 
   const [todos, setTodos] = React.useState<ITodo[]>(
-    list.length > 0 ? list : []
+    list != null && list.length > 0 ? list : []
   );
   const [saved, setSaved] = React.useState<ITodo[]>(
-    list.length > 0 ? list : []
+    list != null && list.length > 0 ? list : []
   );
-  const [categoryData, setCategoryData] = React.useState<string[]>(
-    inTheCategory.length > 0 ? inTheCategory : []
-  );
+  const [categoryData, setCategoryData] = React.useState<string[]>([]);
 
   React.useEffect(() => {
     updateCategory();
