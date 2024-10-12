@@ -29,12 +29,12 @@ export const TodoContextProvider = ({ children }: ProviderProps) => {
   const [categoryData, setCategoryData] = React.useState<string[]>([]);
 
   React.useEffect(() => {
-    updateCategory();
+    updateCategory(todos);
   }, []);
 
-  const updateCategory = () => {
+  const updateCategory = (list: ITodo[]) => {
     let mySet = new Set<string>();
-    todos.map((e) => mySet.add(e.category));
+    list.map((e) => mySet.add(e.category));
     setCategoryData([...mySet]);
   };
 
@@ -45,9 +45,10 @@ export const TodoContextProvider = ({ children }: ProviderProps) => {
       category: category.toLowerCase(),
       status: false,
     };
-    updateCategory();
     setSaved([...todos, newTodo]);
     setTodos([...todos, newTodo]);
+    updateCategory([...todos, newTodo]);
+
     localStorage.setItem("info", JSON.stringify([...todos, newTodo]));
   };
 
@@ -60,9 +61,9 @@ export const TodoContextProvider = ({ children }: ProviderProps) => {
       if (e.id == id) {
         e.task = task;
         e.category = category.toLowerCase();
-        updateCategory();
         setTodos([...todos]);
         setSaved([...todos]);
+        updateCategory([...todos]);
         localStorage.setItem("info", JSON.stringify([...todos]));
       }
     });
@@ -73,7 +74,7 @@ export const TodoContextProvider = ({ children }: ProviderProps) => {
     for (let i = 0; i < result.length; i++) result[i].id = i + 1;
     setTodos([...result]);
     setSaved([...result]);
-    updateCategory();
+    updateCategory([...result]);
     localStorage.setItem("info", JSON.stringify([...result]));
   };
 
@@ -95,7 +96,7 @@ export const TodoContextProvider = ({ children }: ProviderProps) => {
   // Search
 
   const searchText = (search: string): void => {
-    if (search) {
+    if (search != "") {
       let result = saved.filter((e) => e.task.includes(search.toLowerCase()));
       setTodos([...result]);
     } else setTodos(saved);
