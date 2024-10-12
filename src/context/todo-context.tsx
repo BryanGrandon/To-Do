@@ -41,7 +41,7 @@ export const TodoContextProvider = ({ children }: ProviderProps) => {
   const saveTodo = (task: string, category: string): void => {
     const newTodo: ITodo = {
       id: todos.length + 1,
-      task,
+      task: task.toLowerCase(),
       category: category.toLowerCase(),
       status: false,
     };
@@ -97,7 +97,7 @@ export const TodoContextProvider = ({ children }: ProviderProps) => {
 
   const searchText = (search: string): void => {
     if (search != "") {
-      let result = saved.filter((e) => e.task.includes(search.toLowerCase()));
+      let result = saved.filter((e) => e.task.includes(search));
       setTodos([...result]);
     } else setTodos(saved);
   };
@@ -119,7 +119,7 @@ export const TodoContextProvider = ({ children }: ProviderProps) => {
   };
 
   const search = ({ type, search, category, completed }: ISearch): void => {
-    if (type == "search") searchText(String(search));
+    if (type == "search") searchText(String(search?.toLowerCase()));
     else if (type == "category") searchCategory(String(category));
     else if (type == "complete") searchChecked(String(completed));
   };
